@@ -66,6 +66,20 @@ import Med13 from "../../../public/images/MedicalStore/Med13.png"
 import Med14 from "../../../public/images/MedicalStore/Med14.png"
 import Med15 from "../../../public/images/MedicalStore/Med15.png"
 import Med16 from "../../../public/images/MedicalStore/Med16.png"
+import HipnodeThumbnail from "../../../public/images/Hipnode/HipnodeThumbnail.png"
+import Hipnode1 from "../../../public/images/Hipnode/Hipnode1.png"
+import Hipnode2 from "../../../public/images/Hipnode/Hipnode2.png"
+import Hipnode3 from "../../../public/images/Hipnode/Hipnode3.png"
+import Hipnode4 from "../../../public/images/Hipnode/Hipnode4.png"
+import Hipnode5 from "../../../public/images/Hipnode/Hipnode5.png"
+import Hipnode6 from "../../../public/images/Hipnode/Hipnode6.png"
+import Hipnode7 from "../../../public/images/Hipnode/Hipnode7.png"
+import Hipnode8 from "../../../public/images/Hipnode/Hipnode8.png"
+import Hipnode9 from "../../../public/images/Hipnode/Hipnode9.png"
+import Hipnode10 from "../../../public/images/Hipnode/Hipnode10.png"
+import Hipnode11 from "../../../public/images/Hipnode/Hipnode11.png"
+import Hipnode12 from "../../../public/images/Hipnode/Hipnode12.png"
+import Hipnode13 from "../../../public/images/Hipnode/Hipnode13.png"
 
 import { StaticImageData } from 'next/image';
 interface Project {
@@ -263,6 +277,31 @@ const FeaturedProjects = () => {
         'Secure Data Handling — Ensures all captured information is stored and managed securely.',
       ],
       images: [yotoExtFront, yotofrontPic, yotoExt1],
+    },
+    {
+      image: HipnodeThumbnail,
+      title: 'Social Media Gardening app',
+      summary: 'Hipnode is a social networking platform designed specifically for gardeners, enabling users to connect, share plant journeys, discover communities, and manage their gardening activities in one interactive ecosystem.',
+      technologies: [
+        'Nextjs',
+        'Scss',
+        'Typescript',
+        'Nodejs',
+        'Expressjs',
+        'Postgresql',
+      ],
+      overview: 'Hipnode is an all-in-one social platform built for gardening enthusiasts to connect, collaborate, and grow together. It combines the power of social networking with smart gardening tools, allowing users to join plant communities, share updates, track their gardening schedules, and interact with fellow gardeners worldwide. With features like real-time messaging, plant tracking, and community engagement, Hipnode transforms gardening into a connected and interactive experience.',
+      features: [
+        'Community Building — Join and create gardening communities like GreenBuds to connect with like-minded plant lovers.',
+        'Plant Tracking & Scheduling — Organize your gardening tasks with built-in schedules and plant care reminders.',
+        'Social Interaction — Share updates, like posts, chat with friends, and engage with the gardening community.',
+        'Real-Time Messaging — Stay connected with other gardeners through instant chat and notifications.',
+        'Location Sharing — Discover and share local gardens and nearby plant enthusiasts.',
+        'Activity Dashboard — Access everything from messages, alerts, and communities in a centralized interface.',
+        'Profile & Network Growth — Build your gardening identity and expand your network of plant lovers.',
+        'Alerts & Notifications — Get updates on plant care, messages, and community activities in real time.',
+      ],
+      images: [Hipnode1, Hipnode2, Hipnode3, Hipnode4, Hipnode5, Hipnode6, Hipnode7, Hipnode8, Hipnode9, Hipnode10, Hipnode11, Hipnode12, Hipnode13],
     },
      {
       image: FuncsuiteThumbnail,
