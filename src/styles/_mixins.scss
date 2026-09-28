@@ -1,0 +1,52 @@
+@use 'sass:map';
+
+$breakpoints: (
+  sm: 560px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
+@mixin up($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin down($bp) {
+  @media (max-width: calc(#{map.get($breakpoints, $bp)} - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin focus-ring {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@mixin eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* A hairline card surface used across sections. */
+@mixin surface($radius: var(--radius-lg)) {
+  background: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.035),
+    rgb(255 255 255 / 0.015)
+  );
+  border: 1px solid var(--border);
+  border-radius: $radius;
+}

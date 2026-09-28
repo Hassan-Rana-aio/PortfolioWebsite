@@ -1,0 +1,116 @@
+@use 'mixins' as *;
+
+.grid {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+
+  @include up(lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: -24px;
+}
+
+.paperWrap {
+  perspective: 1200px;
+}
+
+.paper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 460px;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1.2;
+  padding: clamp(24px, 5vw, 40px);
+  border-radius: 10px;
+  background: #f6f6f4;
+  color: #16181d;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.6) inset,
+    0 50px 100px -40px rgb(0 0 0 / 0.9);
+  transform: rotateX(6deg) rotateY(-10deg) rotateZ(1deg);
+  transition: transform 0.7s var(--ease-out);
+
+  @include hover {
+    transform: rotateX(0) rotateY(0) rotateZ(0) translateY(-4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+  }
+}
+
+.paperName {
+  font-size: clamp(1.125rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.paperTitle {
+  font-size: 0.8125rem;
+  color: #4a4e57;
+}
+
+.paperRule {
+  height: 1px;
+  margin-block: 8px;
+  background: #d5d7db;
+}
+
+.paperHeading {
+  margin-top: 8px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.paperRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.75rem;
+
+  b {
+    font-weight: 600;
+  }
+
+  i {
+    color: #6a6e76;
+    font-style: normal;
+    white-space: nowrap;
+  }
+
+  @include down(sm) {
+    i {
+      display: none;
+    }
+  }
+}
+
+.paperLines {
+  display: grid;
+  gap: 6px;
+
+  i {
+    height: 6px;
+    border-radius: 3px;
+    background: #e1e2e5;
+
+    &:nth-child(2) {
+      width: 85%;
+    }
+
+    &:nth-child(3) {
+      width: 60%;
+    }
+  }
+}

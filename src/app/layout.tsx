@@ -1,19 +1,76 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.scss';
-import styles from './page.module.scss';
-const inter = Inter({
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  style: ['normal'],
+import type { Metadata, Viewport } from 'next';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
+import { profile } from '@/content/profile';
+import {
+  personJsonLd,
+  siteDescription,
+  siteTitle,
+  websiteJsonLd,
+} from '@/lib/seo';
+import '@/styles/globals.scss';
+
+const sans = Geist({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-sans',
+  display: 'swap',
+});
+const mono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+const serif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'Muhammad Hassan Rana',
-  description:
-    'Portfolio of Muhammad Hassan Rana – Full-Stack Developer specializing in Next.js, React, TypeScript, and modern web applications. Explore featured projects, skills, and contact details.',
+  metadataBase: new URL(profile.siteUrl),
+  title: { default: siteTitle, template: `%s | ${profile.name}` },
+  description: siteDescription,
+  applicationName: profile.name,
+  authors: [{ name: profile.name, url: profile.siteUrl }],
+  creator: profile.name,
+  keywords: [
+    'Product Engineer',
+    'Full Stack Engineer',
+    'Full Stack Developer',
+    'SaaS Developer',
+    'React Developer',
+    'Next.js Developer',
+    'Node.js Developer',
+    'AI-powered SaaS',
+    'Muhammad Hassan Rana',
+  ],
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: profile.name,
+    title: siteTitle,
+    description: siteDescription,
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+  },
+  robots: { index: true, follow: true },
 };
+
+export const viewport: Viewport = {
+  themeColor: '#08090b',
+  colorScheme: 'dark',
+};
+
+const jsonLd = JSON.stringify([personJsonLd, websiteJsonLd]).replace(
+  /</g,
+  '\\u003c'
+);
 
 export default function RootLayout({
   children,
@@ -21,9 +78,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className}`} suppressHydrationWarning={true}>
-        <main className={styles.root_main}>{children}</main>
+    <html
+      lang="en"
+      className={`${sans.variable} ${mono.variable} ${serif.variable}`}
+    >
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd }}
+        />
       </body>
     </html>
   );

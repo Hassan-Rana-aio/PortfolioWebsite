@@ -1,0 +1,360 @@
+@use 'mixins' as *;
+
+.hero {
+  position: relative;
+  min-height: min(100svh, 980px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: calc(var(--nav-height) + 40px);
+  padding-bottom: 32px;
+  overflow: hidden;
+
+  // Faint grid that fades out toward the edges.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(
+      ellipse 70% 60% at 60% 40%,
+      #000 20%,
+      transparent 75%
+    );
+    pointer-events: none;
+  }
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  align-items: center;
+
+  @include up(lg) {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 24px;
+  }
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+
+  > * {
+    animation: rise 0.9s var(--ease-out) both;
+  }
+
+  @for $i from 1 through 6 {
+    > :nth-child(#{$i}) {
+      animation-delay: #{0.06 + $i * 0.07}s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    > * {
+      animation: none;
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+  padding-inline: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.03);
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--positive);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid var(--positive);
+    opacity: 0;
+    animation: ping 2.4s var(--ease-out) infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.name {
+  margin-top: 28px;
+  font-size: clamp(2.75rem, 7.4vw, 5.25rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.positioning {
+  margin-top: 20px;
+  max-width: 580px;
+  font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text);
+
+  :global(.accent-serif) {
+    color: var(--accent);
+    font-size: 1.08em;
+  }
+}
+
+.intro {
+  margin-top: 20px;
+  max-width: 540px;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.3vw, 1.0625rem);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 36px;
+
+  @include down(sm) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    > :first-child {
+      grid-column: 1 / -1;
+    }
+
+    > a {
+      padding-inline: 12px;
+    }
+  }
+}
+
+.socials {
+  display: flex;
+  gap: 8px;
+  margin-top: 28px;
+
+  a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text-muted);
+    transition:
+      color 0.2s,
+      border-color 0.2s,
+      transform 0.25s var(--ease-out);
+
+    @include hover {
+      color: var(--text);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/* ---------- Visual ---------- */
+
+.visual {
+  position: absolute;
+  top: -40px;
+  right: -30%;
+  width: 110%;
+  aspect-ratio: 1.1;
+  opacity: 0.22;
+  pointer-events: none;
+
+  @include up(md) {
+    right: -18%;
+    width: 80%;
+    opacity: 0.45;
+  }
+
+  @include up(lg) {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.glow {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(129 147 255 / 0.18), transparent 65%);
+  filter: blur(30px);
+}
+
+.fallback,
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 1s var(--ease-out);
+}
+
+.canvas {
+  opacity: 0;
+}
+
+.shown {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.legend {
+  display: none;
+
+  @include up(lg) {
+    position: absolute;
+    right: 0;
+    bottom: 6%;
+    display: grid;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+
+    li {
+      display: flex;
+      gap: 10px;
+      transition: color 0.3s;
+    }
+
+    span {
+      color: var(--accent);
+    }
+
+    .legendActive {
+      color: var(--text);
+    }
+  }
+}
+
+/* Label that follows the active node; positioned from the WebGL scene. */
+.nodeLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  will-change: transform;
+}
+
+.nodeLabelOn {
+  opacity: 1;
+}
+
+.nodeLabelInner {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  display: grid;
+  gap: 2px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: rgb(12 13 16 / 0.82);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transform: translateX(-50%);
+  animation: label-in 0.35s var(--ease-out);
+
+  small {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+}
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 6px);
+  }
+}
+
+/* ---------- Facts strip ---------- */
+
+.facts {
+  position: relative;
+  margin-top: 56px;
+
+  dl {
+    display: grid;
+    gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+
+    @include up(md) {
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 32px;
+    }
+  }
+
+  dt {
+    @include eyebrow;
+    margin-bottom: 6px;
+  }
+
+  dd {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+
+    strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+  }
+}

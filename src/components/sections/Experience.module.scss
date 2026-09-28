@@ -1,0 +1,144 @@
+@use 'mixins' as *;
+
+.timeline {
+  display: grid;
+}
+
+.entry {
+  display: grid;
+  gap: 20px;
+  padding-block: 40px;
+  border-top: 1px solid var(--border);
+
+  &:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  @include up(lg) {
+    grid-template-columns: 300px 1fr;
+    gap: 64px;
+    padding-block: 56px;
+  }
+}
+
+.meta {
+  @include up(lg) {
+    position: sticky;
+    top: calc(var(--nav-height) + 32px);
+    align-self: start;
+  }
+}
+
+.period {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--accent);
+}
+
+.company {
+  margin-top: 10px;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+}
+
+.location {
+  margin-top: 4px;
+  color: var(--text-dim);
+  font-size: 0.875rem;
+}
+
+.body {
+  display: grid;
+  gap: 28px;
+  max-width: 760px;
+}
+
+.context {
+  color: var(--text);
+  font-size: 1.0625rem;
+}
+
+.role {
+  display: grid;
+  gap: 14px;
+}
+
+.roleHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+
+  h4 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  span {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+}
+
+.bullets {
+  display: grid;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.9688rem;
+
+  li {
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 0.72em;
+      width: 8px;
+      height: 1px;
+      background: var(--text-dim);
+    }
+  }
+}
+
+.more {
+  justify-self: start;
+  color: var(--accent);
+  font-size: 0.875rem;
+  padding: 4px 0;
+
+  @include hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.caseLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  font-size: 0.9375rem;
+  font-weight: 500;
+
+  svg {
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  @include hover {
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+}

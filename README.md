@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Muhammad Hassan Rana — Portfolio
 
-## Getting Started
+Personal site and CV: https://muhammadhassanrana.vercel.app
 
-First, run the development server:
+Next.js 15 (App Router), React 19, TypeScript, SCSS modules, Motion, and React Three Fiber for the hero scene.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:5173
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The contact form sends mail through Gmail. Set these in `.env.local` (and in Vercel):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+EMAIL_USER=you@gmail.com
+EMAIL_PASS=<gmail app password>
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing content
 
-## Learn More
+All copy lives in `src/content/`. The website **and** the CV both render from it:
 
-To learn more about Next.js, take a look at the following resources:
+| File | Contents |
+| --- | --- |
+| `profile.ts` | Name, positioning, links, about copy, education |
+| `experience.ts` | Roles and bullets (the website timeline and the CV) |
+| `projects.ts` | Case studies (`caseStudy`) and the "More work" grid |
+| `skills.ts` | Skills, each with where it was used |
+| `services.ts` | Hire section, engagement steps, testimonials |
+| `resume.ts` | CV summary, skill lines and project selection |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Unconfirmed facts use `todo('…')` from `src/lib/todo.ts`. They show as dashed
+markers in dev and are removed from production builds. See `CONTENT_TODO.md`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Regenerating the CV PDF
 
-## Deploy on Vercel
+The PDF in `public/` is printed from `/resume` with headless Chrome:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build && npm run cv
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Commit the updated `public/Muhammad-Hassan-Rana-CV.pdf`. Stop `npm run dev` first,
+because the build and the dev server share the `.next` folder. Set `CHROME_PATH`
+if Chrome isn't installed as `google-chrome`.
+
+## Structure
+
+```
+src/
+  app/
+    (site)/          home page and /work/[slug] case studies (share nav + footer)
+    resume/          print-ready CV page
+    api/contact/     contact form endpoint (validation, honeypot, rate limit)
+    sitemap.ts, robots.ts, opengraph-image.tsx, icon.svg
+  components/
+    hero/            hero, WebGL scene, SVG fallback
+    sections/        home page sections
+    mockups/         code-drawn illustrations used instead of private screenshots
+    resume/          ATS-friendly CV document
+    ui/              buttons, tags, reveal animation, placeholder text
+  content/           all copy (see above)
+  lib/               placeholders, SEO data, hero graph geometry
+  styles/            tokens, global styles, Sass mixins
+```
+
+## Performance notes
+
+- The 3D hero is loaded with a dynamic import after the browser is idle, and only on
+  desktops (≥1024px) with WebGL. It's skipped for reduced-motion users, Save-Data
+  connections and low-memory devices. It pauses when scrolled off screen.
+  Everyone else gets a static SVG of the same graph.
+- Screenshots go through `next/image` (AVIF/WebP, responsive sizes, blur placeholders).
+- Page content is server-rendered. Only the nav, skills tabs, gallery dialog,
+  contact form and hero scene ship client-side JavaScript.

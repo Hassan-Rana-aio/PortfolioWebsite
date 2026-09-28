@@ -1,0 +1,11 @@
+.todo {
+  display: inline;
+  padding: 1px 6px;
+  border: 1px dashed var(--warm);
+  border-radius: 6px;
+  color: var(--warm);
+  background: rgb(243 197 142 / 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  font-style: normal;
+}

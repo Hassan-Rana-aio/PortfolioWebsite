@@ -1,0 +1,82 @@
+@use 'mixins' as *;
+
+.grid {
+  display: grid;
+  gap: 48px;
+
+  @include up(lg) {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 96px;
+  }
+}
+
+.story {
+  display: grid;
+  gap: 20px;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  max-width: 680px;
+}
+
+.lead {
+  color: var(--text);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.facts {
+  display: grid;
+
+  > div {
+    display: grid;
+    gap: 4px;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--border);
+
+    &:first-child {
+      border-top: 1px solid var(--border);
+    }
+  }
+
+  dt {
+    @include eyebrow;
+  }
+
+  dd {
+    font-weight: 500;
+  }
+}
+
+.principles {
+  display: grid;
+  gap: 12px;
+  margin-top: 72px;
+
+  @include up(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.principle {
+  @include surface;
+  padding: 28px;
+
+  h3 {
+    margin-top: 28px;
+    font-size: 1.125rem;
+  }
+
+  p {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+}

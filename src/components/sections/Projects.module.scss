@@ -1,0 +1,145 @@
+@use 'mixins' as *;
+
+.featured {
+  display: grid;
+  gap: 24px;
+}
+
+.featureLink {
+  @include surface(var(--radius-xl));
+  display: grid;
+  gap: 32px;
+  padding: 16px;
+  transition:
+    border-color 0.35s var(--ease-out),
+    background-color 0.35s var(--ease-out);
+
+  @include up(lg) {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 48px;
+    padding: 24px;
+    align-items: center;
+  }
+
+  @include hover {
+    border-color: var(--border-strong);
+
+    .cta svg {
+      transform: translate(3px, -3px);
+    }
+
+    .visual {
+      transform: translateY(-4px);
+    }
+
+    img {
+      transform: scale(1.02);
+    }
+  }
+}
+
+// Alternate the visual side on desktop.
+.feature:nth-child(even) .featureLink {
+  @include up(lg) {
+    grid-template-columns: 1fr 1.15fr;
+
+    .visual {
+      order: 2;
+    }
+  }
+}
+
+.visual {
+  transition: transform 0.6s var(--ease-out);
+}
+
+.content {
+  display: grid;
+  gap: 16px;
+  padding: 4px 8px 12px;
+
+  @include up(lg) {
+    padding: 8px 16px 8px 0;
+
+    .feature:nth-child(even) & {
+      padding: 8px 0 8px 16px;
+    }
+  }
+}
+
+.kicker {
+  @include eyebrow;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  > span:first-child {
+    color: var(--accent);
+  }
+}
+
+.name {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+}
+
+.tagline {
+  color: var(--text);
+  font-size: 1.0625rem;
+}
+
+.details {
+  display: grid;
+  gap: 14px;
+  padding-block: 16px;
+  border-block: 1px solid var(--border);
+
+  div {
+    display: grid;
+    gap: 2px;
+  }
+
+  dt {
+    @include eyebrow;
+  }
+
+  dd {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+}
+
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-weight: 500;
+
+  svg {
+    transition: transform 0.3s var(--ease-out);
+  }
+}
+
+.moreHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 96px;
+  margin-bottom: 24px;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: var(--text-muted);
+  }
+}
