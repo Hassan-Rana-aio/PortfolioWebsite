@@ -74,5 +74,7 @@ src/
   connections and low-memory devices. It pauses when scrolled off screen.
   Everyone else gets a static SVG of the same graph.
 - Screenshots go through `next/image` (AVIF/WebP, responsive sizes, blur placeholders).
+- Product videos (`public/videos`): cards loop a small silent preview (~150 KB) only while
+  on screen; the full narrated walkthrough (~9 MB) loads only when someone presses play.
 - Page content is server-rendered. Only the nav, skills tabs, gallery dialog,
   contact form and hero scene ship client-side JavaScript.

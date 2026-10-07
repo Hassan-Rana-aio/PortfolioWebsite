@@ -44,7 +44,7 @@ export const profile = {
 export const about = {
   lead: 'I’m a full-stack engineer who cares about what happens after the merge.',
   paragraphs: [
-    'For the last three years I’ve worked on products that real people depend on: a restaurant website builder, a social trading platform, a recruiting search tool and an exam-prep platform for medical students. Most of that work sits in React, Next.js and TypeScript on the front, and Node.js with PostgreSQL or MongoDB behind it.',
+    'For the last three years I’ve worked on products that real people depend on: a restaurant website builder, a social trading platform, a recruiting search tool and an exam-prep platform for medical students. Outside work I build products of my own, most recently a digital menu board SaaS and a pharmacy ERP, both with AI built in. Most of this sits in React, Next.js and TypeScript on the front, and Node.js with PostgreSQL or MongoDB behind it.',
     'The part I enjoy most is the translation: taking a business requirement, working out what the product actually needs to do, and shipping it in small, testable pieces. At AIO that means owning builder features end to end and debugging them when a restaurant’s site doesn’t publish. With founders it means turning an idea into a first version they can put in front of users.',
   ],
   principles: [

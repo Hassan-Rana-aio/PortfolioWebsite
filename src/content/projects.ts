@@ -1,6 +1,18 @@
 import { todo } from '@/lib/todo';
 import type { Project } from './types';
 
+import menuBoardWall from '../../public/images/MenuBoard/01-whole-menu-on-one-tv.jpg';
+import menuBoardAutopilot from '../../public/images/MenuBoard/02-autopilot-three-tv-wall.jpg';
+import menuBoardWizard from '../../public/images/MenuBoard/03-setup-wizard-and-import.jpg';
+import menuBoardStudio from '../../public/images/MenuBoard/05-design-studio.jpg';
+import menuBoardUrdu from '../../public/images/MenuBoard/06-urdu-and-emergency-messages.jpg';
+import menuBoardTv from '../../public/images/MenuBoard/08-android-tv-app.jpg';
+import pharmaPos from '../../public/images/PharmaFlow/02-pos-sale.jpg';
+import pharmaInventory from '../../public/images/PharmaFlow/03-inventory.jpg';
+import pharmaExpiry from '../../public/images/PharmaFlow/04-near-expiry.jpg';
+import pharmaPriceList from '../../public/images/PharmaFlow/07-price-list.jpg';
+import pharmaProfit from '../../public/images/PharmaFlow/09-profit-summary.jpg';
+import pharmaBatches from '../../public/images/PharmaFlow/11-batch-wise-stock.jpg';
 import traderateSignals from '../../public/images/Traderate/Traderate4.png';
 import traderateCreate from '../../public/images/Traderate/Traderate3.png';
 import traderatePortfolio from '../../public/images/Traderate/Traderate5.png';
@@ -98,6 +110,227 @@ export const projects: Project[] = [
         ),
       ],
       diagram: 'builder',
+    },
+  },
+  {
+    slug: 'menu-board',
+    name: 'Menu Board',
+    tagline:
+      'A digital menu board SaaS for restaurants: import the menu once, and every TV lays itself out and stays right.',
+    summary:
+      'A multi-tenant SaaS for restaurant TV menus, designed and built end to end: a React dashboard and design studio, a NestJS API and worker on PostgreSQL, live updates over MQTT and a Kotlin Android TV app.',
+    role: 'Product designer and full-stack developer',
+    period: '2026',
+    context: 'Own product',
+    stack: [
+      'React',
+      'TypeScript',
+      'NestJS',
+      'PostgreSQL',
+      'Redis',
+      'MQTT',
+      'Kotlin (Android TV)',
+      'Claude API',
+      'Playwright',
+    ],
+    cover: {
+      src: menuBoardWall,
+      alt: 'A whole restaurant menu with a deal, an Iftar countdown and a QR code on one TV',
+    },
+    video: {
+      src: '/videos/menu-board.mp4',
+      preview: '/videos/menu-board-preview.mp4',
+      poster: '/videos/menu-board-poster.jpg',
+      captions: '/videos/menu-board.vtt',
+      duration: '1:26',
+      width: 1920,
+      height: 1080,
+    },
+    gallery: [
+      {
+        src: menuBoardWall,
+        alt: 'A 38-dish menu with a deal, Iftar countdown and QR code, readable on one TV (demo restaurant)',
+      },
+      {
+        src: menuBoardAutopilot,
+        alt: 'Autopilot: the menu split across three TVs, sized to read from the queue',
+      },
+      {
+        src: menuBoardWizard,
+        alt: 'Setup wizard and spreadsheet import, from a menu file to a live wall',
+      },
+      {
+        src: menuBoardStudio,
+        alt: 'Design studio with the live menu, a deal, a countdown and a QR code',
+      },
+      {
+        src: menuBoardUrdu,
+        alt: 'Urdu dish names in Nastaliq and an Urdu emergency message',
+      },
+      {
+        src: menuBoardTv,
+        alt: 'The Kotlin Android TV app, which pairs with a code and starts on boot',
+      },
+    ],
+    links: {},
+    caseStudy: {
+      problem:
+        'Restaurants run their menu on TVs above the counter, but most signage tools give them a design canvas and a TV player. Every price change, sold-out dish or new item means someone redesigns the screens by hand, and small restaurants don’t have a designer.',
+      approach: [
+        'Treat the menu as the source of truth, not the screen: menu in, screens out.',
+        'Let the owner describe the setup (how many TVs, how far guests stand, which look) and have a layout engine do the design work.',
+        'Make the TV side real-time and offline-first, so a sold-out tap reaches the screen in seconds and a dropped connection doesn’t blank the board.',
+      ],
+      solution: [
+        'Menu import from a spreadsheet, or from a photo of the printed menu read by a vision model through the Claude API.',
+        'An autopilot layout engine that splits the menu across the screens at a readable size and recomposes them whenever the menu changes.',
+        'A staff phone app to mark dishes sold out. The TV strikes them through within seconds over MQTT.',
+        'A design studio with drag, snap, layers, widgets such as countdowns and QR codes, and approvals, plus schedules and offers.',
+        'Built for Pakistan: Urdu dish names in Nastaliq, Sehri and Iftar countdowns, and emergency messages.',
+        'Proof-of-play reports, and a Kotlin Android TV app that pairs with a code and starts on boot.',
+        'Under the hood: a TypeScript monorepo with PostgreSQL row-level security for multi-tenancy, a transactional outbox and worker, Redis and an offline-first TV player.',
+      ],
+      features: [
+        {
+          title: 'Menu in, screens out',
+          body: 'Import a spreadsheet or a photo of the printed menu, pick a look, and every screen is laid out for you.',
+        },
+        {
+          title: 'Live sold-out',
+          body: 'Staff tap a dish on their phone and it is struck through on the TV within seconds.',
+        },
+        {
+          title: 'Design studio',
+          body: 'A full canvas for owners who want control: layers, snapping, widgets and approvals.',
+        },
+        {
+          title: 'Multi-tenant SaaS',
+          body: 'Every restaurant isolated with PostgreSQL row-level security, behind one API.',
+        },
+        {
+          title: 'Android TV app',
+          body: 'A Kotlin app for the TV that pairs with a code and starts on boot.',
+        },
+        {
+          title: 'Made for Pakistan',
+          body: 'Urdu in Nastaliq, Sehri and Iftar countdowns, and emergency messages in Urdu.',
+        },
+      ],
+      results: [
+        'Backed by 1,300+ unit and integration tests, 11 Playwright end-to-end tests and 30 Android unit tests.',
+        'In automated layout checks, a 50-dish menu fits in all 17 looks without dropping a dish.',
+        'Feature-complete for a first release and tested on a full local stack. Cloud deployment is the next step.',
+      ],
+    },
+  },
+  {
+    slug: 'pharmaflow',
+    name: 'PharmaFlow',
+    tagline:
+      'A multi-tenant pharmacy ERP and POS built around batches and expiry dates, with AI document processing.',
+    summary:
+      'A pharmacy retail platform built end to end: keyboard-first POS, batch-level inventory, purchasing, accounting, FBR digital invoicing and an AI service, across a Node.js API, React front-ends and a Python service.',
+    role: 'Full-stack developer, built end to end',
+    period: 'Jun 2026 – Oct 2026',
+    context: 'Own product',
+    stack: [
+      'TypeScript',
+      'React',
+      'Node.js',
+      'Express.js',
+      'PostgreSQL',
+      'Sequelize',
+      'Python (FastAPI)',
+      'Claude API',
+      'Playwright',
+      'GitHub Actions',
+    ],
+    cover: {
+      src: pharmaPos,
+      alt: 'PharmaFlow point of sale with a cart showing the batch and expiry on every line',
+    },
+    video: {
+      src: '/videos/pharmaflow.mp4',
+      preview: '/videos/pharmaflow-preview.mp4',
+      poster: '/videos/pharmaflow-poster.jpg',
+      captions: '/videos/pharmaflow.vtt',
+      duration: '1:26',
+      width: 1920,
+      height: 1080,
+    },
+    gallery: [
+      {
+        src: pharmaPos,
+        alt: 'Point of sale: batch and expiry on every cart line (demo pharmacy)',
+      },
+      {
+        src: pharmaInventory,
+        alt: 'Inventory with on-hand, available, expiry and status per batch',
+      },
+      {
+        src: pharmaExpiry,
+        alt: 'Near-expiry worklist with the value at risk',
+      },
+      {
+        src: pharmaBatches,
+        alt: 'Batch-wise stock report with unit cost and total value',
+      },
+      {
+        src: pharmaPriceList,
+        alt: 'Supplier price-list import from PDF, photo, Excel or CSV',
+      },
+      {
+        src: pharmaProfit,
+        alt: 'Profit and loss summary with profit by company and category',
+      },
+    ],
+    links: {},
+    caseStudy: {
+      problem:
+        'Most retail software treats medicine like groceries: one price, one quantity, no batch, no expiry. A pharmacy can’t run on that. Stock lives in batches, batches expire, and a strip is not a box.',
+      approach: [
+        'Model the things that make a pharmacy different (batches, expiry, packs and loose pieces) first, and build everything else on top of them.',
+        'Keep money server-authoritative: every total is recomputed when a sale is posted, never trusted from the browser.',
+        'Define profit, expiry and settlement once in shared SQL, so no two reports can give different answers.',
+      ],
+      solution: [
+        'A keyboard-first POS with FEFO batch allocation, parked carts and offline selling as a PWA with a queued sale store.',
+        'Batch-level inventory with per-item expiry warning windows, plus near-expiry and reorder worklists.',
+        'Purchasing with weighted-average costing, customer and supplier ledgers, dues and claims.',
+        'FBR digital invoicing with a verification QR on every receipt, built against the published invoicing contract.',
+        'A Python AI service on the Claude API: supplier price lists and invoices captured from PDFs, prescription parsing, demand forecasting and a natural-language data assistant.',
+        'A super-admin console for subscriptions, per-pharmacy feature gating and activity across pharmacies.',
+      ],
+      features: [
+        {
+          title: 'Batch-aware POS',
+          body: 'The till picks the batch expiring first and shows the batch and expiry on every line.',
+        },
+        {
+          title: 'Offline selling',
+          body: 'When the internet drops, the counter keeps selling and syncs when it comes back.',
+        },
+        {
+          title: 'Expiry control',
+          body: 'Warning windows set per item, so slow movers warn months ahead and fast ones weeks ahead.',
+        },
+        {
+          title: 'AI document capture',
+          body: 'A distributor’s price list or invoice becomes structured catalogue data.',
+        },
+        {
+          title: 'One definition of profit',
+          body: 'Revenue after tax and cost from the batch that sold, shared by every report.',
+        },
+        {
+          title: 'Multi-tenant platform',
+          body: 'Each pharmacy isolated, with a super-admin view for subscriptions and features.',
+        },
+      ],
+      results: [
+        '1,400+ automated tests, 100+ database tables and 10 CI/CD pipelines.',
+        'A product build tested with a seeded demo pharmacy. It is not yet running with paying pharmacies.',
+      ],
     },
   },
   {
@@ -447,9 +680,17 @@ export const projects: Project[] = [
 ];
 
 export const caseStudies = projects.filter((p) => p.caseStudy && !p.hidden);
-export const featuredProjects = caseStudies.filter((p) =>
-  ['aio-website-builder', 'traderate', 'khive-paper-trading'].includes(p.slug)
-);
+/** Featured on the home page, in this order. */
+const featuredOrder = [
+  'aio-website-builder',
+  'menu-board',
+  'pharmaflow',
+  'traderate',
+  'khive-paper-trading',
+];
+export const featuredProjects = featuredOrder
+  .map((slug) => caseStudies.find((p) => p.slug === slug))
+  .filter((p): p is Project => Boolean(p));
 export const moreProjects = projects.filter(
   (p) => !p.hidden && !featuredProjects.includes(p)
 );

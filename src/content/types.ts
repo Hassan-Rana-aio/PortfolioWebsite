@@ -42,6 +42,21 @@ export interface CaseStudy {
   diagram?: Mockup;
 }
 
+/** A recorded product walkthrough. Files live in public/videos. */
+export interface ProjectVideo {
+  /** Full narrated walkthrough, loaded only when played. */
+  src: string;
+  /** Short silent clip that loops on the project card. */
+  preview: string;
+  /** First frame of the preview, shown before playback and for reduced motion. */
+  poster: string;
+  captions?: string;
+  /** Human-readable length, e.g. "1:26". */
+  duration: string;
+  width: number;
+  height: number;
+}
+
 export interface Project {
   slug: string;
   name: string;
@@ -54,6 +69,7 @@ export interface Project {
   stack: string[];
   cover: Shot | Mockup;
   gallery: Shot[];
+  video?: ProjectVideo;
   links: { live?: string; github?: string };
   /** Highlighted in the main project grid with a full case study page. */
   caseStudy?: CaseStudy;

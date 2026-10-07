@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import VideoPlayer from '@/components/case-study/VideoPlayer';
 import Mockup from '@/components/mockups/Mockup';
 import Button from '@/components/ui/Button';
 import ContentText, { renders } from '@/components/ui/ContentText';
@@ -122,12 +123,16 @@ export default async function CaseStudyPage({ params }: Params) {
       </header>
 
       <div className={`container ${styles.cover}`}>
-        <ProjectVisual
-          cover={project.cover}
-          sizes="(min-width: 1280px) 1200px, 100vw"
-          priority
-        />
-        {typeof project.cover === 'string' && (
+        {project.video ? (
+          <VideoPlayer video={project.video} title={project.name} />
+        ) : (
+          <ProjectVisual
+            cover={project.cover}
+            sizes="(min-width: 1280px) 1200px, 100vw"
+            priority
+          />
+        )}
+        {!project.video && typeof project.cover === 'string' && (
           <p className={styles.caption}>
             Illustration: drawn to explain the product without exposing private
             screens.

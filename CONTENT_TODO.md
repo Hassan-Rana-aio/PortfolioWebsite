@@ -32,6 +32,13 @@ Search the code for `todo(` to find each one.
 - **TimberCraft and Carvilla** aren't shown. Their only images were promo graphics with numbers you can't back up. The screenshots are still in `public/images`.
 - **Phone number** appears on the CV only, not on the website.
 
+## Menu Board and PharmaFlow
+
+- Both are shown as **own products** that are feature-complete but **not yet deployed or used by paying customers**, matching your own marketing notes.
+- Test and table counts are rounded **down** to what I could count in the repos: Menu Board 1,300+ tests (your notes say 1,838; generated test cases don't show up in a static count), PharmaFlow 1,400+ tests and 100+ tables (your notes say 1,565 and 109). Raise them if you can show the test runner output.
+- **Upwork link.** Both promo videos and their READMEs use `upwork.com/freelancers/hassanr304`, but the site links to `~01ed33e57607189bc5`. If `hassanr304` is your current profile, update `links.upwork` in `src/content/profile.ts`.
+- Videos live in `public/videos`. To replace one, keep the same file names (full video, `-preview.mp4` loop, `-poster.jpg`, `.vtt` captions).
+
 ## Testimonials
 
 `testimonials` in `src/content/services.ts` is empty, so the section is hidden.

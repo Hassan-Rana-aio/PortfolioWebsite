@@ -10,13 +10,23 @@ export const skillGroups: SkillGroup[] = [
     label: 'Frontend',
     blurb: 'Interfaces that stay fast and readable as the product grows.',
     skills: [
-      { name: 'React', usedAt: ['AIO', 'K-Hive', 'QLU.ai'] },
+      {
+        name: 'React',
+        usedAt: ['AIO', 'K-Hive', 'QLU.ai', 'Menu Board', 'PharmaFlow'],
+      },
       { name: 'Next.js', usedAt: ['AIO', 'QLU.ai', 'PreMed.pk'] },
-      { name: 'TypeScript', usedAt: ['AIO', 'K-Hive', 'QLU.ai'] },
+      {
+        name: 'TypeScript',
+        usedAt: ['AIO', 'K-Hive', 'QLU.ai', 'Menu Board', 'PharmaFlow'],
+      },
       { name: 'JavaScript', usedAt: ['Every role since 2023'] },
       { name: 'HTML & CSS', usedAt: ['Interns Pakistan', 'Every role since'] },
       { name: 'SCSS', usedAt: ['Yoto.ai', 'Hipnode', 'This site'] },
-      { name: 'Tailwind CSS', usedAt: ['PreMed.pk'] },
+      {
+        name: 'Tailwind CSS',
+        usedAt: ['PreMed.pk', 'Menu Board', 'PharmaFlow'],
+      },
+      { name: 'Kotlin (Android TV)', usedAt: ['Menu Board'] },
     ],
   },
   {
@@ -24,11 +34,19 @@ export const skillGroups: SkillGroup[] = [
     label: 'Backend',
     blurb: 'APIs and business logic that the frontend can rely on.',
     skills: [
-      { name: 'Node.js', usedAt: ['AIO', 'K-Hive', 'QLU.ai', 'PreMed.pk'] },
-      { name: 'Express.js', usedAt: ['K-Hive', 'QLU.ai', 'PreMed.pk'] },
-      { name: 'NestJS', usedAt: ['AIO'] },
-      { name: 'REST APIs', usedAt: ['AIO', 'K-Hive', 'QLU.ai'] },
+      {
+        name: 'Node.js',
+        usedAt: ['AIO', 'K-Hive', 'QLU.ai', 'PreMed.pk', 'PharmaFlow'],
+      },
+      {
+        name: 'Express.js',
+        usedAt: ['K-Hive', 'QLU.ai', 'PreMed.pk', 'PharmaFlow'],
+      },
+      { name: 'NestJS', usedAt: ['AIO', 'Menu Board'] },
+      { name: 'REST APIs', usedAt: ['AIO', 'K-Hive', 'QLU.ai', 'PharmaFlow'] },
       { name: 'WebSockets', usedAt: ['K-Hive'] },
+      { name: 'MQTT (real-time)', usedAt: ['Menu Board'] },
+      { name: 'Python (FastAPI)', usedAt: ['PharmaFlow'] },
       { name: 'Microservices', usedAt: ['K-Hive'] },
     ],
   },
@@ -38,8 +56,12 @@ export const skillGroups: SkillGroup[] = [
     blurb:
       'Relational and document data, modelled around how the product uses it.',
     skills: [
-      { name: 'PostgreSQL', usedAt: ['AIO', 'QLU.ai'] },
+      {
+        name: 'PostgreSQL',
+        usedAt: ['AIO', 'QLU.ai', 'Menu Board', 'PharmaFlow'],
+      },
       { name: 'MongoDB', usedAt: ['K-Hive'] },
+      { name: 'Redis', usedAt: ['Menu Board'] },
       { name: 'SQLite', usedAt: ['Pharmacy system'] },
     ],
   },
@@ -62,10 +84,14 @@ export const skillGroups: SkillGroup[] = [
     blurb: 'Getting code from a branch to production, repeatably.',
     skills: [
       { name: 'Git & GitHub', usedAt: ['Every role'] },
-      { name: 'Docker', usedAt: ['AIO'] },
+      { name: 'Docker', usedAt: ['AIO', 'Menu Board', 'PharmaFlow'] },
       { name: 'AWS Route 53', usedAt: ['AIO'] },
-      { name: 'CI/CD (GitHub Actions)', usedAt: ['AIO'] },
-      { name: 'Nx monorepos', usedAt: ['AIO'] },
+      {
+        name: 'CI/CD (GitHub Actions)',
+        usedAt: ['AIO', 'Menu Board', 'PharmaFlow'],
+      },
+      { name: 'Playwright & Vitest', usedAt: ['Menu Board', 'PharmaFlow'] },
+      { name: 'Monorepos (Nx, Turborepo)', usedAt: ['AIO', 'Menu Board'] },
       { name: 'Vercel', usedAt: ['This site'] },
     ],
   },
@@ -75,11 +101,16 @@ export const skillGroups: SkillGroup[] = [
     blurb:
       'Using language models where they make the product better, not as a gimmick.',
     skills: [
+      { name: 'Claude API', usedAt: ['Menu Board', 'PharmaFlow'] },
       { name: 'OpenAI API', usedAt: ['Yoto.ai', 'EnduraGrowth'] },
+      {
+        name: 'Vision & document extraction',
+        usedAt: ['Menu Board', 'PharmaFlow'],
+      },
       { name: 'Prompt-to-structured-data', usedAt: ['Yoto.ai'] },
       {
         name: 'AI-powered product features',
-        usedAt: ['Yoto.ai', 'EnduraGrowth'],
+        usedAt: ['Yoto.ai', 'EnduraGrowth', 'PharmaFlow'],
       },
     ],
   },

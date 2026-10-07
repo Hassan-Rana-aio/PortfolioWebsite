@@ -20,11 +20,11 @@ export default function Projects() {
           id="projects-title"
           title={
             <>
-              Products in production,{' '}
-              <span className="accent-serif">not demos.</span>
+              Real products,{' '}
+              <span className="accent-serif">not tutorials.</span>
             </>
           }
-          lead="Case studies from the products I’ve built and maintained: what the problem was, how I approached it and what I shipped."
+          lead="Case studies from production work and from products I’ve built end to end: what the problem was, how I approached it and what I shipped."
         />
 
         <ol className={styles.featured}>
@@ -38,6 +38,7 @@ export default function Projects() {
                 <div className={styles.visual}>
                   <ProjectVisual
                     cover={project.cover}
+                    video={project.video}
                     sizes="(min-width: 1024px) 640px, 100vw"
                   />
                 </div>
